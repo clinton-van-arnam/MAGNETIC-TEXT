@@ -13,7 +13,7 @@ let speedoffset = 0.5;
 
 let x = 1;
 let y = 1;
-let easing = 0.0008;
+let easing = 0.0005;
 
 var cols, rows;
 
@@ -44,14 +44,14 @@ function setup() {
  
 }
 function draw() {
-  background(0);
+  background(255);
   
   let count = 0;//sets count of sentence array
   let xoffset = 0;
 
   let yoffset = 0;
   
-  noiseDetail(8);
+
   
   for (let o2 = fontsize; o2 <= height - fontsize; o2 += fontsize+space) {
     xoffset += x_increment;
@@ -68,10 +68,6 @@ function draw() {
     
        let r = atan2(y - o2, x - o1);//converts current point and mouse angle 
 
-
-    
-      
-      var noiseFill = noise(xoffset, yoffset, zoffset) ;
       
       
       var v = p5.Vector.fromAngle(r);
@@ -79,12 +75,10 @@ function draw() {
       push();
       translate(o1, o2);
 
-      rotate(v.heading()+noiseFill);
+      rotate(v.heading());
       text(sentenceArray[count], 0, 0);
       pop();
-    fill(noiseFill*255);
-    // rotation += speed;
-
+  
       count += 1;//this cycles through the sentence
       count %= sentenceArray.length;//this loops the sentence
       xoffset += speedoffset;
